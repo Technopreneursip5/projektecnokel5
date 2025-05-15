@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produk - Herbal Sehat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('img/latar.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 10px 15px;
+    }
+
+    .logo-bulat {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid #fff;
+    }
+
+    .judul-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .judul-header h1 {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+
+    .judul-header span {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      gap: 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #444;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    #welcome-message {
+      background-color: rgba(255, 255, 255, 0.92);
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 1.6em;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .produk-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .produk-item {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .produk-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .produk-item figcaption {
+      font-size: 0.85em;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .produk-item p {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .produk-item .harga {
+      font-size: 1.1rem;
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .produk-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .produk-item {
+        width: 100%;
+      }
+
+      .judul-header h1 {
+        font-size: 1.2rem;
+      }
+
+      .judul-header span {
+        font-size: 0.85rem;
+      }
+
+      #welcome-message {
+        font-size: 1.3rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    /* Animasi goyang */
+    @keyframes goyang {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(-3deg); }
+      75% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .goyang {
+      animation: goyang 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="img/logo.png" alt="Logo Herbal Sehat" class="logo-bulat">
+  <div class="judul-header">
+    <h1>EXPO TIF_AGB</h1>
+    <span>KELOMPOK 5</span>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="produk.html">Produk</a></li>
+    <li><a href="keranjang.html">Keranjang</a></li>
+    <li><a href="checkout.html">Checkout</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <section id="welcome-message">🌿 PRODUK KAMI 🌿</section>
+  <div class="produk-container">
+    <div class="produk-item">
+      <p>Es Cincau Kelor Herbal</p>
+      <figure onclick="goyangDanLihatManfaat(this, 'Es Cincau Kelor Herbal')">
+        <img src="img/EsCincauKelor.jpg" alt="Es Cincau Kelor Herbal">
+        <figcaption>Klik gambar untuk melihat manfaatnya</figcaption>
+      </figure>
+      <p class="harga">Harga: Rp 10.000</p>
+      <button onclick="tambahKeKeranjang('Es Cincau Kelor Herbal', 10000)">Tambahkan ke Keranjang</button>
+    </div>
+    <div class="produk-item">
+      <p>Jamu Herbal</p>
+      <figure onclick="goyangDanLihatManfaat(this, 'Jamu Herbal')">
+        <img src="img/JamuHerbal.jpg" alt="Jamu Herbal">
+        <figcaption>Klik gambar untuk melihat manfaatnya</figcaption>
+      </figure>
+      <p class="harga">Harga: Rp 10.000</p>
+      <button onclick="tambahKeKeranjang('Jamu Herbal', 10000)">Tambahkan ke Keranjang</button>
+    </div>
+    <div class="produk-item">
+      <p>Minyak Sereh Herbal</p>
+      <figure onclick="goyangDanLihatManfaat(this, 'Minyak Sereh Herbal')">
+        <img src="img/MinyakSereh.jpg" alt="Minyak Sereh Herbal">
+        <figcaption>Klik gambar untuk melihat manfaatnya</figcaption>
+      </figure>
+      <p class="harga">Harga: Rp 20.000</p>
+      <button onclick="tambahKeKeranjang('Minyak Sereh Herbal', 20000)">Tambahkan ke Keranjang</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 EXPO TIF_AGB. All rights reserved.</p>
+</footer>
+
+<script>
+  function tambahKeKeranjang(nama, harga) {
+    Swal.fire({
+      title: 'Tambahkan ke Keranjang?',
+      text: `Produk: ${nama}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Tambahkan!',
+      cancelButtonText: 'Batal',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let keranjang = JSON.parse(sessionStorage.getItem('keranjang')) || [];
+        keranjang.push({ nama: nama, harga: harga });
+        sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
+        Swal.fire({
+          title: 'Berhasil!',
+          text: 'Produk telah ditambahkan ke keranjang.',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    });
+  }
+
+  function lihatManfaat(namaProduk) {
+    const manfaat = {
+      'Es Cincau Kelor Herbal': 'Membantu menurunkan panas dalam, melancarkan pencernaan, dan kaya antioksidan.',
+      'Jamu Herbal': 'Menurunkan gula darah dan menurunkan resistensi insulin.',
+      'Minyak Sereh Herbal': 'Menghilangkan jerawat, menghilangkan kutu rambut, dan mencerahkan kulit secara alami.'
+    };
+
+    Swal.fire({
+      title: `Manfaat ${namaProduk}`,
+      text: manfaat[namaProduk] || 'Informasi manfaat belum tersedia.',
+      icon: 'info'
+    });
+  }
+
+  function goyangDanLihatManfaat(el, namaProduk) {
+    const img = el.querySelector('img');
+    img.classList.add('goyang');
+    setTimeout(() => {
+      img.classList.remove('goyang');
+    }, 500); // Sesuai durasi animasi
+
+    lihatManfaat(namaProduk);
+  }
+</script>
+
+</body>
+</html>

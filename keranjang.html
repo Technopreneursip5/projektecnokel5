@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja - EXPO TIF_AGB</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-image: url('img/latar.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo-bulat {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid #fff;
+    }
+     .judul-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .judul-header h1 {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+
+    .judul-header span {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 15px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+      border-radius: 5px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .keranjang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: rgb(106, 196, 98);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4CAF50;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      margin-top: 60px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .modal-content .button-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .keranjang-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item-controls {
+        justify-content: flex-start;
+      }
+
+      body {
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="img/logo.png" alt="Logo Herbal Sehat" class="logo-bulat">
+  <div class="judul-header">
+    <h1>EXPO TIF_AGB</h1>
+    <span>KELOMPOK 5</span>
+  </div>
+</header>
+
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="produk.html">Produk</a></li>
+    <li><a href="keranjang.html">Keranjang</a></li>
+    <li><a href="checkout.html">Checkout</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <h3>Daftar Produk yang Anda Pilih:</h3>
+  <div id="keranjang-list"></div>
+  <div class="total">Total: Rp <span id="total-harga">0</span></div>
+  <br>
+  <a href="checkout.html"><button>Checkout Sekarang</button></a>
+</main>
+
+<footer>
+  <p>&copy; 2025 EXPO TIF_AGB. All rights reserved.</p>
+</footer>
+
+<!-- Modal -->
+<div id="hapusModal" class="modal">
+  <div class="modal-content">
+    <h2>Hapus Produk</h2>
+    <p>Apakah Anda yakin ingin menghapus produk ini dari keranjang?</p>
+    <div class="button-container">
+      <button onclick="hapusProduk()">Ya, Hapus</button>
+      <button onclick="tutupModal()">Batal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let keranjang = JSON.parse(sessionStorage.getItem('keranjang')) || [];
+  let produkIndex;
+
+  function tampilkanKeranjang() {
+    const list = document.getElementById('keranjang-list');
+    list.innerHTML = "";
+    let total = 0;
+
+    if (keranjang.length === 0) {
+      list.innerHTML = "<p>Keranjang kosong.</p>";
+    } else {
+      keranjang.forEach((item, index) => {
+        const subtotal = item.harga * item.jumlah;
+        total += subtotal;
+
+        list.innerHTML += `
+          <div class="keranjang-item">
+            <div class="item-info">
+              <strong>${item.nama}</strong><br>
+              Harga: Rp ${item.harga.toLocaleString()} x ${item.jumlah} = Rp ${subtotal.toLocaleString()}
+            </div>
+            <div class="item-controls">
+              <button onclick="kurangiJumlah(${index})">-</button>
+              <button onclick="tambahJumlah(${index})">+</button>
+              <button onclick="konfirmasiHapus(${index})">Hapus</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById("total-harga").textContent = total.toLocaleString();
+  }
+
+  function tambahJumlah(index) {
+    keranjang[index].jumlah += 1;
+    simpanKeranjang();
+  }
+
+  function kurangiJumlah(index) {
+    if (keranjang[index].jumlah > 1) {
+      keranjang[index].jumlah -= 1;
+    } else {
+      keranjang.splice(index, 1);
+    }
+    simpanKeranjang();
+  }
+
+  function konfirmasiHapus(index) {
+    produkIndex = index;
+    document.getElementById("hapusModal").style.display = "flex";
+  }
+
+  function tutupModal() {
+    document.getElementById("hapusModal").style.display = "none";
+  }
+
+  function hapusProduk() {
+    keranjang.splice(produkIndex, 1);
+    simpanKeranjang();
+    tutupModal();
+  }
+
+  function simpanKeranjang() {
+    sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
+    tampilkanKeranjang();
+  }
+
+  keranjang = keranjang.map(item => {
+    if (!item.jumlah) item.jumlah = 1;
+    return item;
+  });
+
+  simpanKeranjang();
+</script>
+
+</body>
+</html>
